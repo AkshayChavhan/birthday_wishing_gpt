@@ -1,32 +1,32 @@
 import React from "react";
 
-function Header({ progress=""}) {
+function Header({ progress = "" }) {
   return (
     <>
-      <div className="bg-[#282c9b] h-[100px] flex justify-between">
-        <div className="flex justify-start items-start">
+      <div className="bg-[#282c9b] h-[100px] flex justify-between items-center p-2">
+        <div className="flex items-center">
           <div>
             <img
               src={"/2_Cadbury Logo.png"}
               alt="Cadbury Logo"
-              width="137px"
-              height="54px"
+              width="70"
+              height="40px"
               style={{
                 maxHeight: "100%",
               }}
             />
           </div>
-          <div>
+          <div className="ml-4">
             <img
               src={"/2_2d logo.png"}
               alt="hash_birthday_image"
-              width="261px"
+              width="200px"
               height="127px"
             />
           </div>
         </div>
         <div>
-          <img src={"/2_Hamburger.png"} alt="Hamburger" />
+          <img src={"/2_Hamburger.png"} alt="Hamburger" className="w-6 h-6" />
         </div>
       </div>
       <div className="">

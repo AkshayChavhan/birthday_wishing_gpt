@@ -33,7 +33,7 @@ const OtpModal = ({
       onClose(false);
       navigate(`/${to}`);
     } else {
-      onClose(true);
+      return alert("Invalid OTP");
     }
   };
 
@@ -42,7 +42,7 @@ const OtpModal = ({
       {isOpen && (
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 backdrop-blur-sm transition-opacity">
           <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-            <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+            <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg place-self-center">
               <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4 flex flex-col">
                 <div className="text-center sm:text-left">
                   <h3 className="text-xl font-extrabold leading-6 text-center text-blue-800">

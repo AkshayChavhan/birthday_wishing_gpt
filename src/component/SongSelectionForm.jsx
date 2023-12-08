@@ -7,7 +7,7 @@ import { useMyContext } from "./UserDetailContext";
 
 function SongSelectionForm() {
   const navigate = useNavigate();
-  const { updateSequenceStep , updateMusicType , isLoggedIn } = useMyContext();
+  const { updateSequenceStep, updateMusicType, isLoggedIn } = useMyContext();
 
   const [panel1ClickedImage, setPanel1ClickedImage] = useState(null);
   const [panel2ClickedImage, setPanel2ClickedImage] = useState(null);
@@ -19,36 +19,49 @@ function SongSelectionForm() {
       if (!panel1ClickedImage || !panel2ClickedImage || !panel3ClickedImage) {
         return alert("Please select all three images");
       }
-      if(panel2ClickedImage === 6){
-        updateMusicType('rap')
-      }else if(panel2ClickedImage === 7){
-        updateMusicType('rock')
-      }else if(panel2ClickedImage === 8){
-        updateMusicType('pop')
-      }else if(panel2ClickedImage === 9){
-        updateMusicType('desi')
-      }else if(panel2ClickedImage === 10){
-        updateMusicType('EDM')
+      if (panel2ClickedImage === 6) {
+        updateMusicType("rap");
+      } else if (panel2ClickedImage === 7) {
+        updateMusicType("rock");
+      } else if (panel2ClickedImage === 8) {
+        updateMusicType("pop");
+      } else if (panel2ClickedImage === 9) {
+        updateMusicType("desi");
+      } else if (panel2ClickedImage === 10) {
+        updateMusicType("EDM");
       }
 
       updateSequenceStep(4);
-      alert(`${panel1ClickedImage}, ${panel2ClickedImage}, ${panel3ClickedImage}`);
-      navigate("/get-lyrics")
+      navigate("/get-lyrics");
     } catch (error) {
       console.error("Error fetching lyrics:", error.message);
     }
   };
 
-  useEffect(()=>{
-    if(!isLoggedIn){
+  useEffect(() => {
+    if (!isLoggedIn) {
       navigate("/");
     }
-  },[])
+  }, []);
   return (
     <div className="">
       <Header progress={"/progress bar3.png"} />
 
       <div>
+        <div className="absolute left-0 right-0">
+          <div
+            className="absolute left-0"
+            style={{ top: "264px", left: "12px" }}
+          >
+            <img src={"/2_Purple tone.png"} alt="glitter" width={20} height={20} />
+          </div>
+          <div
+            className="absolute right-10 -top-50"
+            style={{ right: "60px", top: "157px" }}
+          >
+            <img src={"/Balloon2.png"} alt="Balloon" width={40} height={40} />
+          </div>
+        </div>
         <HeroSection
           source="/5_Headphone.png"
           alt_name="landing picture2"
@@ -83,6 +96,14 @@ function SongSelectionForm() {
             Proceed
           </button>
         </form>
+        <div className="absolute left-0 right-0">
+         <div
+            className="absolute right-10 -top-50"
+            style={{ right: "16px", top: "-100px" }}
+          >
+            <img src={"/2_Asset 1.png"} alt="Balloon" width={40} height={40} />
+          </div>
+        </div>
       </div>
     </div>
   );

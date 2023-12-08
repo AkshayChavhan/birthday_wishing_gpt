@@ -17,21 +17,33 @@ function RegistrationForm() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [fullname, setFullname] = useState("");
   const [emailId, setEmailId] = useState("");
-  const [selectedTermCondition, setSelectedTermCondition] = useState(false);
-  const [receiveCommunication, setReceiveCommunication] = useState(false);
+  const [selectedOption1, setSelectedOption1] = useState(null);
+  const [selectedOption2, setSelectedOption2] = useState(null);
   const [open, setOpen] = useState(false);
 
   const handleSubmitForm = async (e) => {
     e.preventDefault();
     try {
+      if (
+        !validateEmail(emailId) ||
+        !validateFullName(fullname) ||
+        !validatePhoneNumber(phoneNumber)
+      ) {
+        return alert("Please fill form correctly.");
+      }
       const response = await API.post("/register", {
         phoneNumber,
         fullname,
-        emailId
+        emailId,
       });
-      if (response.statusText === 'OK') {
+
+      if (response?.data?.message === "User already exists") {
+        return alert(response.data.message);
+      }
+
+      if (response.statusText === "OK") {
         const { token } = await response.data;
-        localStorage.setItem('jwtToken', token);
+        localStorage.setItem("jwtToken", token);
         setOpen(true);
 
         updateName(fullname);
@@ -40,8 +52,8 @@ function RegistrationForm() {
         setPhoneNumber("");
         setFullname("");
         setEmailId("");
-        setSelectedTermCondition(false);
-        setReceiveCommunication(false);
+        setSelectedOption1(false);
+        setSelectedOption2(false);
       } else {
         console.error("Error registering user");
       }
@@ -50,12 +62,12 @@ function RegistrationForm() {
     }
   };
 
-  const handleOptionChange = (event, option) => {
-    if (option === 1) {
-      setSelectedTermCondition(event);
-    } else {
-      setReceiveCommunication(event);
-    }
+  const handleOptionChange1 = () => {
+    setSelectedOption1(!selectedOption1);
+  };
+
+  const handleOptionChange2 = () => {
+    setSelectedOption2(!selectedOption2);
   };
 
   const handleCloseModal = () => {
@@ -65,8 +77,8 @@ function RegistrationForm() {
     setPhoneNumber("");
     setFullname("");
     setEmailId("");
-    setSelectedTermCondition(false);
-    setReceiveCommunication(false);
+    setSelectedOption1(false);
+    setSelectedOption2(false);
     setOpen(false);
   };
 
@@ -101,9 +113,10 @@ function RegistrationForm() {
           <div className="flex flex-col self-center py-3 mx-20">
             <label className="text-white text-xs py-2">
               <input
-                type="checkbox"
-                checked={selectedTermCondition}
-                onChange={(e) => handleOptionChange(e.target.checked, 1)}
+                type="radio"
+                name="options1"
+                checked={selectedOption1}
+                onChange={handleOptionChange1}
               />
               <span className="px-3">
                 I accept Terms & Conditions and Privacy Policy of Mondelez
@@ -113,9 +126,10 @@ function RegistrationForm() {
 
             <label className="text-white text-xs">
               <input
-                type="checkbox"
-                checked={receiveCommunication}
-                onChange={(e) => handleOptionChange(e.target.checked, 2)}
+                type="radio"
+                name="options2"
+                checked={selectedOption2}
+                onChange={handleOptionChange2}
               />
               <span className="px-3">
                 I would like to receive promotional communication from Mondelez
@@ -131,6 +145,19 @@ function RegistrationForm() {
             Submit
           </button>
         </form>
+        <div className="absolute left-0 right-0">
+          <div className="absolute left-0">
+            <img src={"/2_Asset 1.png"} alt="glitter" width={80} height={80} />
+          </div>
+          <div className="absolute right-10 -top-50">
+            <img
+              src={"/2_Yellow tone.png"}
+              alt="music"
+              width={25}
+              height={25}
+            />
+          </div>
+        </div>
       </div>
       <CustomModal open={open} setOpen={handleCloseModal} to="birthday-user" />
     </div>

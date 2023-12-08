@@ -25,7 +25,7 @@ const startServer = async () => {
     console.log('Connected to MongoDB');
 
     app.listen(port, () => {
-      console.log(`Server is running on port ${process.env.PORT}`);
+      console.log(`Server is running on port ${port}`);
     });
   } catch (error) {
     console.error('Error starting the server:', error.message);

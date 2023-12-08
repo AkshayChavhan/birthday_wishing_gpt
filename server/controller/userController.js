@@ -7,7 +7,7 @@ dotenv.config();
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 const getPrompt = (musicType, name, direction) => {
-  return `
+    return `
     Wish a happy birthday to ${name}. Ensure that "Happy birthday" is mentioned at
     least twice in the lyrics, and it should rhyme. The lyrics should use simple, short,
     and easy-to-pronounce words as much as possible. Using the above information, please
@@ -34,6 +34,10 @@ const RegisterUserController = async (req, res) => {
             emailId
         } = req.body;
 
+        const existingUser = await User.findOne({ emailId });
+        if (existingUser) {
+            return res.status(200).json({ message: "User already exists", token: null });
+        }
         const user = new User({
             phoneNumber,
             fullname,
