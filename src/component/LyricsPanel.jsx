@@ -14,7 +14,7 @@ function LyricsPanel() {
   const getBirthdayLyrics = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3001/generate-lyrics",
+        "http://localhost:3001/api/generate-lyrics",
         {
           bname,
           gender,

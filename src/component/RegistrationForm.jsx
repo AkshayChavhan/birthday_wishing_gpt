@@ -9,6 +9,7 @@ import CustomModal from "./modal/CustomModal";
 import Header from "./Header";
 import HeroSection from "./modal/HeroSection";
 import { useMyContext } from "./UserDetailContext";
+import axios from "axios";
 
 function RegistrationForm() {
   const { updateName, updateSequenceStep, updateLoggedIn } = useMyContext();
@@ -20,17 +21,30 @@ function RegistrationForm() {
   const [receiveCommunication, setReceiveCommunication] = useState(false);
   const [open, setOpen] = useState(false);
 
-  const handleSubmitForm = (e) => {
+  const handleSubmitForm = async (e) => {
     e.preventDefault();
-    if (
-      validatePhoneNumber(phoneNumber) &&
-      validateFullName(fullname) &&
-      validateEmail(emailId)
-    ) {
-      setOpen(true);
-    } else {
-      setOpen(false);
-      alert("Please fill in the form correctly.");
+    try {
+      const response = await axios.post("http://localhost:3001/api/register", {
+        phoneNumber,
+        fullname,
+        emailId
+      });
+      if (response.ok) {
+        setOpen(true);
+
+        updateName(fullname);
+        updateLoggedIn(true);
+        updateSequenceStep(2);
+        setPhoneNumber("");
+        setFullname("");
+        setEmailId("");
+        setSelectedTermCondition(false);
+        setReceiveCommunication(false);
+      } else {
+        console.error("Error registering user");
+      }
+    } catch (error) {
+      console.error("Error registering user:", error);
     }
   };
 
