@@ -12,12 +12,14 @@ app.use(bodyParser.json());
 const port = 3001;
 const openai = new OpenAI({ apiKey: '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' });
 
-const prompt = `
-    Wish a happy birthday to Akshay.    Ensure that "Happy birthday" is mentioned at
+const getPrompt = (musictype , name , direction ) => {
+
+    return `
+    Wish a happy birthday to ${name}.Ensure that "Happy birthday" is mentioned at
     least twice in the lyrics,and it should rhyme. The lyrics should use simple, short,
     and easy to pronounce words as much as possible. Using the above information, please
-    write 16 lines of rock lyrics that I can dedicate
-    to him for his birthday. Each line can have maximum of 8 words or 40 characters.
+    write 16 lines of ${musictype} lyrics that I can dedicate to him for ${direction} birthday. Each line 
+    can have maximum of 8 words or 40 characters.
     The lyrics generated should be completely unique and never written before every single
     time and should not in any way or manner infringe on any trademarks/copyrights or any other
     rights of any individual or entity anywhere in the world. Any references or similarity to
@@ -29,13 +31,16 @@ const prompt = `
     construed directly or indirectly as cuss words or are offensive in any language should also be
     completely avoided.
     `;
+}
+
 
 app.use(bodyParser.json());
 
 app.post('/generate-lyrics', async (req, res) => {
     try {
-        const { name, gender } = req.body;
-        const prompt = `Wish a happy birthday to ${name}. ${gender === 'male' ? 'He' : 'She'} is celebrating today.`;
+        const { bname, gender , musicType } = req.body;
+        const prompt = getPrompt( musicType , bname , (gender==='Male'?'him':'her' ));
+        console.log(bname, gender , musicType);
         return
         const response = await openai.chat.completions.create({
             model: 'gpt-3.5-turbo',

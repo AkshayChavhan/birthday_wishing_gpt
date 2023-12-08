@@ -8,8 +8,11 @@ import {
 import CustomModal from "./modal/CustomModal";
 import Header from "./Header";
 import HeroSection from "./modal/HeroSection";
+import { useMyContext } from "./UserDetailContext";
 
 function RegistrationForm() {
+  const { updateName, updateSequenceStep, updateLoggedIn } = useMyContext();
+
   const [phoneNumber, setPhoneNumber] = useState("");
   const [fullname, setFullname] = useState("");
   const [emailId, setEmailId] = useState("");
@@ -25,11 +28,6 @@ function RegistrationForm() {
       validateEmail(emailId)
     ) {
       setOpen(true);
-      setPhoneNumber("");
-      setFullname("");
-      setEmailId("");
-      setSelectedTermCondition(false);
-      setReceiveCommunication(false);
     } else {
       setOpen(false);
       alert("Please fill in the form correctly.");
@@ -45,12 +43,26 @@ function RegistrationForm() {
     }
   };
 
+  const handleCloseModal = () => {
+    console.log("above updateLoggedIn1", fullname);
+    updateName(fullname);
+    console.log("above updateLoggedIn2");
+    updateLoggedIn(true);
+    updateSequenceStep(2);
+    setPhoneNumber("");
+    setFullname("");
+    setEmailId("");
+    setSelectedTermCondition(false);
+    setReceiveCommunication(false);
+    setOpen(false);
+  };
+
   return (
     <div className="">
-      <Header progress={"../../public/progress bar1.png"} />
+      <Header progress={"/progress bar1.png"} />
       <div>
         <HeroSection
-          source={"../../public/2_Celebrations(Bg).png"}
+          source={"/2_Celebrations(Bg).png"}
           alt_name="landing picture"
         />
 
@@ -107,7 +119,7 @@ function RegistrationForm() {
           </button>
         </form>
       </div>
-      <CustomModal open={open} setOpen={setOpen} to="birthday-user" />
+      <CustomModal open={open} setOpen={handleCloseModal} to="birthday-user" />
     </div>
   );
 }

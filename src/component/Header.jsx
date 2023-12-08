@@ -7,7 +7,7 @@ function Header({ progress=""}) {
         <div className="flex justify-start items-start">
           <div>
             <img
-              src={"../../public/2_Cadbury Logo.png"}
+              src={"/2_Cadbury Logo.png"}
               alt="Cadbury Logo"
               width="137px"
               height="54px"
@@ -18,7 +18,7 @@ function Header({ progress=""}) {
           </div>
           <div>
             <img
-              src={"../../public/2_2d logo.png"}
+              src={"/2_2d logo.png"}
               alt="hash_birthday_image"
               width="261px"
               height="127px"
@@ -26,7 +26,7 @@ function Header({ progress=""}) {
           </div>
         </div>
         <div>
-          <img src={"../../public/2_Hamburger.png"} alt="Hamburger" />
+          <img src={"/2_Hamburger.png"} alt="Hamburger" />
         </div>
       </div>
       <div className="">

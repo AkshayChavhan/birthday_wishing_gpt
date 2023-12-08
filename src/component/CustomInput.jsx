@@ -5,7 +5,7 @@ function CustomInput({
   placeholder = "",
   value = {},
   onChange = () => {},
-  showLabel = true,
+  showLabel = false,
   label = "Name",
   type="text"
 }) {

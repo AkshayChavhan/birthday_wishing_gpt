@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { useMyContext } from './UserDetailContext';
 
 
-function LandingPage({ source='../../public/1_Celebrations(Bg) - hashtag.png'}) {
-
+function LandingPage({ source='/1_Celebrations(Bg) - hashtag.png'}) {
+  const { updateSequenceStep } = useMyContext();
   const navigate = useNavigate();
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
+      updateSequenceStep(1);
       navigate('/register');
     }, 3000);
 

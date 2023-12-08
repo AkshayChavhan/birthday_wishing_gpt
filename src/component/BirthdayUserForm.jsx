@@ -1,41 +1,55 @@
-import React, { useState } from "react";
-import Header from "./Header";
-import CustomInput from "./CustomInput";
+import React, { useEffect, useState } from "react";
+import { Header, CustomInput, CustomSelect } from "./index";
 import HeroSection from "./modal/HeroSection";
-import CustomSelect from "./CustomSelect";
 import { genderOptions } from "./utils/collections";
 import { validateAge, validateFullName } from "./utils/validation";
 import { useNavigate } from "react-router-dom";
+import { useMyContext } from "./UserDetailContext";
 
 function BirthdayUserForm() {
   const navigate = useNavigate();
+  const {
+    updateGender,
+    updateSequenceStep,
+    updateBirthdayBoyName,
+    isLoggedIn,
+  } = useMyContext();
   const [birthdayUserName, setBirthdayUserName] = useState("");
   const [birthdayUserAge, setBirthdayUserAge] = useState("");
   const [selectedGender, setSelectedGender] = useState("");
 
   const handleSubmitForm = () => {
-    if(!validateFullName(birthdayUserName) || !validateAge(birthdayUserAge)){
-      alert("Please enter valid name and age");
-    }else{
-      navigate("/song-selection")
+    if (
+      !validateFullName(birthdayUserName) ||
+      !validateAge(birthdayUserAge) ||
+      !selectedGender
+    ) {
+      alert("Please enter valid name, age, and select a gender");
+    } else {
+      updateGender(selectedGender);
+      updateBirthdayBoyName(birthdayUserName);
+      updateSequenceStep(3);
+      navigate("/song-selection");
     }
   };
-  
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <div className="">
-      <Header progress={"../../public/progress bar2.png"} />
+      <Header progress={"/progress bar2.png"} />
 
       <div>
         <HeroSection
-          source="../../public/4_Cap&Gift.png"
+          source="/4_Cap&Gift.png"
           alt_name="landing picture2"
           sectionPara="Tell us about your loved one..."
         />
-        <form
-          className="flex flex-col"
-          onSubmit={handleSubmitForm}
-        >
+        <form className="flex flex-col" onSubmit={handleSubmitForm}>
           <CustomInput
             placeholder="***** ************"
             showLabel={true}
@@ -60,7 +74,7 @@ function BirthdayUserForm() {
             value={selectedGender}
             onChange={(e) => setSelectedGender(e.target.value)}
           />
-    
+
           <button
             type="submit"
             className="bg-yellow-500 py-3 text-white font-extrabold rounded-2xl mx-20 my-8"

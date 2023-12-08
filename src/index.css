@@ -33,7 +33,7 @@ body {
   place-items: center; */
   min-width: 320px;
   min-height: 100vh;
-  background-image: url("/public/1_BG.jpg");
+  background-image: url("/1_BG.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

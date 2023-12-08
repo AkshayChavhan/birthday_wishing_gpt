@@ -1,8 +1,12 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-const OtpModal = ({ isOpen=false, onClose=()=>{} , to="birthday-user" }) => {
-    const navigate = useNavigate();
+const OtpModal = ({
+  isOpen = false,
+  onClose = () => {},
+  to = "birthday-user",
+}) => {
+  const navigate = useNavigate();
   const [otp, setOtp] = useState(["", "", "", ""]);
   const inputRefs = [useRef(), useRef(), useRef(), useRef()];
 
@@ -26,7 +30,7 @@ const OtpModal = ({ isOpen=false, onClose=()=>{} , to="birthday-user" }) => {
 
   const handleOtpSubmit = () => {
     const enteredOtp = otp.join("");
-    if (enteredOtp === '1234') {
+    if (enteredOtp === "1234") {
       alert("Success");
       onClose(false);
       navigate(`/${to}`);
@@ -57,7 +61,9 @@ const OtpModal = ({ isOpen=false, onClose=()=>{} , to="birthday-user" }) => {
                           handleInputChange(index, e.target.value)
                         }
                         ref={inputRefs[index]}
-                        className="w-12 h-12 border border-gray-300 bg-blue-800 text-white rounded-md text-center text-xl font-semibold focus:outline-none focus:border-blue-500"
+                        className="w-12 h-12 border border-gray-300 bg-blue-800 text-white
+                        rounded-md text-center text-xl font-semibold focus:outline-none focus:border-blue-500
+                        items-center"
                       />
                     ))}
                   </div>
@@ -87,6 +93,10 @@ const OtpModal = ({ isOpen=false, onClose=()=>{} , to="birthday-user" }) => {
   );
 };
 
-export default function CustomModal({ open = false, setOpen = () => {} , to="birthday-user" }) {
+export default function CustomModal({
+  open = false,
+  setOpen = () => {},
+  to = "birthday-user",
+}) {
   return <OtpModal isOpen={open} onClose={(value) => setOpen(value)} to={to} />;
 }
