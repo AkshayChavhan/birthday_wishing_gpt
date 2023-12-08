@@ -12,13 +12,10 @@ const BirthdayForm = () => {
     e.preventDefault();
 
     try {
-      const response = await API.post(
-        "/generate-lyrics",
-        {
-          name,
-          gender,
-        }
-      );
+      const response = await API.post("/generate-lyrics", {
+        name,
+        gender,
+      });
 
       setSongLyrics(response.data.lyrics);
     } catch (error) {
@@ -47,7 +44,16 @@ const BirthdayForm = () => {
           </select>
         </label>
         <br />
-        <button type="submit">Generate Birthday Song Lyrics</button>
+        <button
+          type="submit"
+          style={{
+            maxWidth: "109px",
+            alignSelf: "center",
+            padding: "9px 29px",
+          }}
+        >
+          Generate Birthday Song Lyrics
+        </button>
       </form>
       <div>
         {songLyrics && (

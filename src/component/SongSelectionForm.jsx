@@ -53,7 +53,12 @@ function SongSelectionForm() {
             className="absolute left-0"
             style={{ top: "264px", left: "12px" }}
           >
-            <img src={"/2_Purple tone.png"} alt="glitter" width={20} height={20} />
+            <img
+              src={"/2_Purple tone.png"}
+              alt="glitter"
+              width={20}
+              height={20}
+            />
           </div>
           <div
             className="absolute right-10 -top-50"
@@ -91,13 +96,18 @@ function SongSelectionForm() {
           />
           <button
             type="submit"
+            style={{
+              maxWidth: "120px",
+              alignSelf: "center",
+              padding: "9px 29px",
+            }}
             className="bg-yellow-500 py-3 text-white font-extrabold rounded-2xl mx-20 my-8"
           >
             Proceed
           </button>
         </form>
         <div className="absolute left-0 right-0">
-         <div
+          <div
             className="absolute right-10 -top-50"
             style={{ right: "16px", top: "-100px" }}
           >

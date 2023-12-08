@@ -3,14 +3,14 @@ import React from "react";
 function Header({ progress = "" }) {
   return (
     <>
-      <div className="bg-[#282c9b] h-[100px] flex justify-between items-center p-2">
+      <div className="bg-[#42006dc4] h-[100px] flex justify-between items-center p-2">
         <div className="flex items-center">
           <div>
             <img
               src={"/2_Cadbury Logo.png"}
               alt="Cadbury Logo"
-              width="70"
-              height="40px"
+              width="80"
+              height="50px"
               style={{
                 maxHeight: "100%",
               }}

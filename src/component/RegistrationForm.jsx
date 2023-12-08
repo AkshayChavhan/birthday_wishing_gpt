@@ -141,6 +141,11 @@ function RegistrationForm() {
           <button
             type="submit"
             className="bg-yellow-500 py-3 text-white font-extrabold rounded-2xl mx-20"
+            style={{
+              maxWidth: "109px",
+              alignSelf: "center",
+              padding: "9px 29px",
+            }}
           >
             Submit
           </button>

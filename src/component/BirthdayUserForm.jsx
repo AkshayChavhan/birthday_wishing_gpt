@@ -93,11 +93,19 @@ function BirthdayUserForm() {
           <button
             type="submit"
             className="bg-yellow-500 py-3 text-white font-extrabold rounded-2xl mx-20 my-8"
+            style={{
+              maxWidth: "123px",
+              alignSelf: "center",
+              padding: "9px 29px",
+            }}
           >
             Proceed
           </button>
           <div className="absolute left-0 right-0">
-            <div className="absolute left-0" style={{ bottom: "-440px" , left:'64px' }}>
+            <div
+              className="absolute left-0"
+              style={{ bottom: "-440px", left: "64px" }}
+            >
               <img
                 src={"/2_Purple tone.png"}
                 alt="music"
