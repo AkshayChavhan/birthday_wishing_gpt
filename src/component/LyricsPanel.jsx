@@ -13,12 +13,18 @@ function LyricsPanel() {
 
   const getBirthdayLyrics = async () => {
     try {
+      const token = localStorage.getItem("jwtToken");
       const response = await axios.post(
         "http://localhost:3001/api/generate-lyrics",
         {
           bname,
           gender,
           musicType
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
         }
       );
       setLyrics(response.data.lyrics);
@@ -47,8 +53,8 @@ function LyricsPanel() {
           }
         />
         <div
-          className="bg-white h-min-[70vh] h-[70vh]
-        m-10 rounded-3xl p-10"
+          className="bg-white h-min-[50vh] h-[50vh]
+        m-10 rounded-3xl p-10 overflow-y-scroll"
         >
           <div className="p-6">
             <p className=" text-center">{lyrics}</p>

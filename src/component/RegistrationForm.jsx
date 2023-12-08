@@ -29,7 +29,11 @@ function RegistrationForm() {
         fullname,
         emailId
       });
-      if (response.ok) {
+      console.log(response);
+      if (response.statusText === 'OK') {
+        const { token } = await response.data;
+        console.log(token);
+        localStorage.setItem('jwtToken', token);
         setOpen(true);
 
         updateName(fullname);
