@@ -12,17 +12,14 @@ export const UserContextProvider = ({ children }) => {
   const [musicType, setMusicType] = useState("");
 
   const updateGender = (newGender) => {
-    console.log("user updateGender in ");
     setGender(newGender);
   };
 
   const updateMusicType = (type) => {
-    console.log("user updateMusicType in ");
     setMusicType(type);
   }
 
   const updateLoggedIn = (status) => {
-    console.log("user logged in , ", status);
     setIsLoggedIn(status);
   };
 

@@ -1,7 +1,7 @@
 // BirthdayForm.js
 
 import React, { useState } from "react";
-import axios from "axios";
+import API from "../services/API";
 
 const BirthdayForm = () => {
   const [name, setName] = useState("");
@@ -12,8 +12,8 @@ const BirthdayForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "http://localhost:3002/generate-lyrics",
+      const response = await API.post(
+        "/generate-lyrics",
         {
           name,
           gender,

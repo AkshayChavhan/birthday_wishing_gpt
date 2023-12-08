@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import HeroSection from "./modal/HeroSection";
 import { useMyContext } from "./UserDetailContext";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import API from "../services/API";
 
 function LyricsPanel() {
   const { gender, bname , musicType } = useMyContext();
@@ -14,8 +14,8 @@ function LyricsPanel() {
   const getBirthdayLyrics = async () => {
     try {
       const token = localStorage.getItem("jwtToken");
-      const response = await axios.post(
-        "http://localhost:3002/api/generate-lyrics",
+      const response = await API.post(
+        "/generate-lyrics",
         {
           bname,
           gender,

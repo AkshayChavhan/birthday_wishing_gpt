@@ -16,7 +16,6 @@ const OtpModal = ({
       newOtp[index] = value;
       setOtp(newOtp);
 
-      // Move focus to the next input box
       if (index < otp.length - 1 && value !== "") {
         inputRefs[index + 1].current.focus();
       }
@@ -24,8 +23,7 @@ const OtpModal = ({
   };
 
   const handleResendOtp = () => {
-    // Implement resend OTP logic here
-    console.log("Resend OTP");
+    alert("Resend OTP");
   };
 
   const handleOtpSubmit = () => {

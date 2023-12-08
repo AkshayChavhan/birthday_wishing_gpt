@@ -9,7 +9,7 @@ import CustomModal from "./modal/CustomModal";
 import Header from "./Header";
 import HeroSection from "./modal/HeroSection";
 import { useMyContext } from "./UserDetailContext";
-import axios from "axios";
+import API from "../services/API";
 
 function RegistrationForm() {
   const { updateName, updateSequenceStep, updateLoggedIn } = useMyContext();
@@ -24,15 +24,13 @@ function RegistrationForm() {
   const handleSubmitForm = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3002/api/register", {
+      const response = await API.post("/register", {
         phoneNumber,
         fullname,
         emailId
       });
-      console.log(response);
       if (response.statusText === 'OK') {
         const { token } = await response.data;
-        console.log(token);
         localStorage.setItem('jwtToken', token);
         setOpen(true);
 
@@ -53,7 +51,6 @@ function RegistrationForm() {
   };
 
   const handleOptionChange = (event, option) => {
-    console.log(option, event);
     if (option === 1) {
       setSelectedTermCondition(event);
     } else {
@@ -62,9 +59,7 @@ function RegistrationForm() {
   };
 
   const handleCloseModal = () => {
-    console.log("above updateLoggedIn1", fullname);
     updateName(fullname);
-    console.log("above updateLoggedIn2");
     updateLoggedIn(true);
     updateSequenceStep(2);
     setPhoneNumber("");

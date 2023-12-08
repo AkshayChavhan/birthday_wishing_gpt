@@ -57,7 +57,6 @@ const generateLyricsController = async (req, res) => {
     try {
         const { bname, gender, musicType } = req.body;
         const prompt = getPrompt(musicType, bname, gender === 'Male' ? 'him' : 'her');
-        console.log(bname, gender, musicType);
 
         const response = await openai.chat.completions.create({
             model: 'gpt-3.5-turbo',
