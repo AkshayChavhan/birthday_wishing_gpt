@@ -7,7 +7,6 @@ import { router } from './routes/userRoutes.js';
 
 
 dotenv.config();
-
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
@@ -26,7 +25,7 @@ const startServer = async () => {
     console.log('Connected to MongoDB');
 
     app.listen(port, () => {
-      console.log(`Server is running on port ${port}`);
+      console.log(`Server is running on port ${process.env.PORT}`);
     });
   } catch (error) {
     console.error('Error starting the server:', error.message);

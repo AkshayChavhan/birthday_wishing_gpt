@@ -15,7 +15,7 @@ function LyricsPanel() {
     try {
       const token = localStorage.getItem("jwtToken");
       const response = await axios.post(
-        "http://localhost:3001/api/generate-lyrics",
+        "http://localhost:3002/api/generate-lyrics",
         {
           bname,
           gender,

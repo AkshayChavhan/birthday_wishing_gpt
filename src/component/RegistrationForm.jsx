@@ -24,7 +24,7 @@ function RegistrationForm() {
   const handleSubmitForm = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3001/api/register", {
+      const response = await axios.post("http://localhost:3002/api/register", {
         phoneNumber,
         fullname,
         emailId

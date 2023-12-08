@@ -13,7 +13,7 @@ const BirthdayForm = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/generate-lyrics",
+        "http://localhost:3002/generate-lyrics",
         {
           name,
           gender,
