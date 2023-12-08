@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import CustomInput from "./CustomInput";
-import { validateEmail, validateFullName, validatePhoneNumber } from "./utils/validation";
+import {
+  validateEmail,
+  validateFullName,
+  validatePhoneNumber,
+} from "./utils/validation";
 import CustomModal from "./modal/CustomModal";
+import Header from "./Header";
+import HeroSection from "./modal/HeroSection";
 
 function RegistrationForm() {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -9,7 +15,7 @@ function RegistrationForm() {
   const [emailId, setEmailId] = useState("");
   const [selectedTermCondition, setSelectedTermCondition] = useState(false);
   const [receiveCommunication, setReceiveCommunication] = useState(false);
-  const [ open , setOpen ] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
@@ -41,52 +47,13 @@ function RegistrationForm() {
 
   return (
     <div className="">
-      <div className="bg-[#282c9b] h-[100px] flex justify-between">
-        <div className="flex justify-start items-start">
-          <div>
-            <img
-              src={"../../public/2_Cadbury Logo.png"}
-              alt="Cadbury Logo"
-              width="137px"
-              height="54px"
-              style={{
-                maxHeight: "100%",
-              }}
-            />
-          </div>
-          <div>
-            <img
-              src={"../../public/2_2d logo.png"}
-              alt="hash_birthday_image"
-              width="261px"
-              height="127px"
-            />
-          </div>
-        </div>
-        <div>
-          <img
-            src={"../../public/2_Hamburger.png"}
-            alt="Hamburger"
-          />
-        </div>
-      </div>
-      <div className="">
-        <img
-          className="progress_container"
-          src={"../../public/progress bar1.png"}
-          alt="progress_dot"
-        />
-      </div>
+      <Header progress={"../../public/progress bar1.png"} />
       <div>
-        <div className="register_items">
-          <div className="crop_div">
-            <img
-              className="image_center"
-              src={"../../public/2_Celebrations(Bg).png"}
-              alt="landing picture"
-            />
-          </div>
-        </div>
+        <HeroSection
+          source={"../../public/2_Celebrations(Bg).png"}
+          alt_name="landing picture"
+        />
+
         <form className="flex flex-col" onSubmit={handleSubmitForm}>
           <h2 className="text-center text-white text-xl font-bold p-4">
             Register to create
@@ -134,15 +101,13 @@ function RegistrationForm() {
 
           <button
             type="submit"
-            className="bg-yellow-500 py-3 rounded-2xl mx-20"
+            className="bg-yellow-500 py-3 text-white font-extrabold rounded-2xl mx-20"
           >
             Submit
           </button>
         </form>
       </div>
-      <CustomModal
-      open={open}
-      setOpen={setOpen}/>
+      <CustomModal open={open} setOpen={setOpen} to="birthday-user" />
     </div>
   );
 }

@@ -6,7 +6,7 @@ import {
   RouterProvider,
   createBrowserRouter,
 } from "react-router-dom";
-import { LandingPage, RegistrationForm } from "./component/index.js";
+import { BirthdayUserForm, LandingPage, RegistrationForm } from "./component/index.js";
 
 
 const router = createBrowserRouter([
@@ -17,6 +17,10 @@ const router = createBrowserRouter([
   {
     path:"/register" ,
     element: <RegistrationForm />,
+  } ,
+  {
+    path:"/birthday-user" ,
+    element: <BirthdayUserForm />,
   }
 ])
 
